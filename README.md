@@ -13,5 +13,8 @@ Una colección de 10 juegos web hechos sin dependencias.
 9. Whack-a-Pixel
 10. Color Rush
 11. Tic Tac Toe
+12. Simon Pulse
+13. Piedra Papel Tijera
+14. Math Sprint
 
 Abrí index.html en un navegador o publicalo con GitHub Pages. Cada juego es compatible con teclado y/o controles táctiles.
