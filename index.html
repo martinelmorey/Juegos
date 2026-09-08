@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080a16" />
+  <title>Tetris — Juegos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <section class="game-card" aria-label="Juego de Tetris">
+      <header>
+        <p class="eyebrow">JUEGOS / 001</p>
+        <h1><span>TET</span>RIS</h1>
+        <p class="tagline">Apilá, limpiá líneas y no dejes que llegue al techo.</p>
+      </header>
+      <div class="game-layout">
+        <div class="board-wrap">
+          <canvas id="board" width="300" height="600" aria-label="Tablero de Tetris"></canvas>
+          <div id="overlay" class="overlay">
+            <strong id="overlay-title">TETRIS</strong>
+            <span id="overlay-copy">Presioná jugar para comenzar</span>
+            <button id="start-button" type="button">Jugar</button>
+          </div>
+        </div>
+        <aside class="panel">
+          <div class="stats">
+            <div class="stat"><span>Puntaje</span><strong id="score">0</strong></div>
+            <div class="stat"><span>Líneas</span><strong id="lines">0</strong></div>
+            <div class="stat"><span>Nivel</span><strong id="level">1</strong></div>
+          </div>
+          <div class="next-piece"><span class="label">Siguiente</span><canvas id="next" width="120" height="120" aria-label="Próxima pieza"></canvas></div>
+          <button id="pause-button" class="secondary" type="button">Pausar</button>
+          <div class="instructions"><p><kbd>←</kbd><kbd>→</kbd> mover</p><p><kbd>↑</kbd> girar · <kbd>↓</kbd> bajar</p><p><kbd>Espacio</kbd> caída rápida</p></div>
+        </aside>
+      </div>
+      <div class="mobile-controls" aria-label="Controles táctiles">
+        <button data-action="left" aria-label="Mover izquierda">←</button><button data-action="rotate" aria-label="Girar">↻</button><button data-action="right" aria-label="Mover derecha">→</button><button data-action="down" aria-label="Bajar">↓</button><button data-action="drop" aria-label="Caída rápida">⇩</button>
+      </div>
+      <footer>Hecho para jugar. <span>⌘</span> Tetris clásico.</footer>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
