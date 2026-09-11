@@ -1,7 +1,7 @@
 create table if not exists public.score_submissions (
   id uuid primary key default gen_random_uuid(),
   player_name text not null check (char_length(trim(player_name)) between 2 and 16),
-  game_key text not null check (game_key in ('tetris','snake','pong','breakout','memory','merge','dodge','connect','whack','reaction','tic','simon','rps','math')),
+  game_key text not null check (game_key in ('tetris','snake','pong','breakout','memory','merge','dodge','connect','whack','reaction','tic','simon','rps','math','maze')),
   score integer not null check (score >= 0 and score <= 1000000),
   created_at timestamptz not null default now()
 );

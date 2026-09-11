@@ -16,5 +16,6 @@ Una colección de 10 juegos web hechos sin dependencias.
 12. Simon Pulse
 13. Piedra Papel Tijera
 14. Math Sprint
+15. Cofre Rush
 
 Abrí index.html en un navegador o publicalo con GitHub Pages. Cada juego es compatible con teclado y/o controles táctiles.

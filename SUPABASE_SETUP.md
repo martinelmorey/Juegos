@@ -8,3 +8,10 @@
 El ranking por juego muestra el mejor puntaje histórico de cada nombre. El ranking general del mes suma el mejor puntaje mensual de cada jugador en cada juego.
 
 La app usa únicamente la Publishable key pública. No agregues una service_role key ni una contraseña de base de datos al repositorio.
+
+
+
+
+## Agregar Cofre Rush
+
+Si ya ejecutaste el esquema antes de que se agregara Cofre Rush, ejecutá también el archivo supabase/maze-migration.sql en SQL Editor para permitir guardar sus puntajes.
