@@ -1,0 +1,5 @@
+export const LEVELS=[
+{name:"01 · Turno nocturno",goal:860,platforms:[[0,470,960,70],[120,390,170,24],[360,330,130,24],[560,390,140,24],[760,300,120,24]],items:[[170,350,"label"],[410,290,"ink"],[610,350,"design"],[800,260,"package"]],enemies:[[300,442,"stain"],[520,442,"bubble"],[720,442,"shirt"]],switches:[[250,442,"green"]],tutorial:"Activá la prensa verde y recuperá los pedidos."},
+{name:"02 · Línea de producción",goal:880,platforms:[[0,470,960,70],[90,350,145,24],[300,420,100,24],[470,310,160,24],[710,380,170,24]],items:[[130,310,"label"],[340,380,"design"],[520,270,"package"],[770,340,"ink"]],enemies:[[245,442,"roller"],[430,442,"pixel"],[660,442,"stain"],[835,442,"bubble"]],switches:[[590,282,"white"]],tutorial:"La tinta reveladora abre rutas defectuosas."},
+{name:"03 · Archivo perdido",goal:890,platforms:[[0,470,960,70],[110,395,110,24],[280,300,150,24],[500,365,110,24],[680,270,180,24]],items:[[150,355,"label"],[320,260,"design"],[550,325,"package"],[740,230,"design"],[820,230,"label"]],enemies:[[230,442,"shirt"],[455,442,"roller"],[630,442,"pixel"]],switches:[[700,242,"black"]],boss:true,tutorial:"Combiná tintas y repará El Diseño Pixelado."}
+];
