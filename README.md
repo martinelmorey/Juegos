@@ -17,5 +17,6 @@ Una colección de 10 juegos web hechos sin dependencias.
 13. Piedra Papel Tijera
 14. Math Sprint
 15. Cofre Rush
+16. Rem Runner
 
 Abrí index.html en un navegador o publicalo con GitHub Pages. Cada juego es compatible con teclado y/o controles táctiles.

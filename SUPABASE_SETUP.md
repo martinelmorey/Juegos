@@ -15,3 +15,7 @@ La app usa únicamente la Publishable key pública. No agregues una service_role
 ## Agregar Cofre Rush
 
 Si ya ejecutaste el esquema antes de que se agregara Cofre Rush, ejecutá también el archivo supabase/maze-migration.sql en SQL Editor para permitir guardar sus puntajes.
+
+## Agregar Rem Runner
+
+Ejecutá el archivo supabase/platformer-migration.sql en SQL Editor para permitir guardar sus puntajes.
