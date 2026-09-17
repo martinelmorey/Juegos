@@ -19,3 +19,7 @@ Si ya ejecutaste el esquema antes de que se agregara Cofre Rush, ejecutá tambi�
 ## Agregar Rem Runner
 
 Ejecutá el archivo supabase/platformer-migration.sql en SQL Editor para permitir guardar sus puntajes.
+
+## Agregar REM Runner
+
+Ejecutá el archivo supabase/rem-runner-migration.sql en SQL Editor para permitir guardar sus récords.
