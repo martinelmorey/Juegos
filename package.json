@@ -1,0 +1,11 @@
+{
+  "name": "juegos-visual-audit",
+  "scripts": {
+    "test:layout": "node tests/visual/assert-layout.cjs",
+    "test:quality": "node --test tests/visual/quality-regressions.cjs"
+  },
+  "private": true,
+  "devDependencies": {
+    "playwright": "1.55.0"
+  }
+}
