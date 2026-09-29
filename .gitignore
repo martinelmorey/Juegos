@@ -1,2 +1,4 @@
 /tests/artifacts/current/
 node_modules/
+
+/tests/artifacts/directions/*.png
