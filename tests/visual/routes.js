@@ -1,4 +1,5 @@
 const viewports = [
+  { name: '320x844', width: 320, height: 844 },
   { name: '390x844', width: 390, height: 844 },
   { name: '592x1280', width: 592, height: 1280 },
 ];

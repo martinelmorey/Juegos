@@ -4,11 +4,12 @@
 
 Auditoría de la portada y los 16 juegos sobre:
 
-- las 34 capturas reales de `tests/artifacts/current` generadas a 390 × 844 y 592 × 1280;
++ las 34 capturas reales de `tests/artifacts/current` revisadas manualmente a 390 × 844 y 592 × 1280;
++ 17 capturas técnicas adicionales a 320 × 844, usadas para comprobar layout y targets táctiles pero no puntuadas manualmente;
 - el HTML, CSS y JavaScript actual de cada superficie;
 - una ejecución local de `npm run test:layout`.
 
-Resultado técnico de la corrida: `PASS layout: 34 screenshots, 17 routes, 2 viewports, 0 layout violations`.
+Resultado técnico de la corrida: `PASS layout: 51 screenshots, 17 routes, 3 viewports, 0 layout violations`.
 
 La puntuación usa una escala de 1 a 5:
 
@@ -172,7 +173,8 @@ Los cuatro primeros puntos no se repiten abajo como deuda pendiente. Pasar layou
 ## Conteo de auditoría
 
 - Superficies puntuadas: 17 de 17.
-- Capturas revisadas: 34 de 34.
++ Capturas revisadas y puntuadas manualmente: 34 de 34 a 390 × 844 y 592 × 1280.
++ Capturas técnicas adicionales: 17 a 320 × 844, sin puntuación manual.
 - Referencias en hallazgos: 33 citas exactas sobre 32 archivos; Color Rush y Piedra Papel tienen un único hallazgo sostenido y por eso citan solo el estado de 390.
 - Hallazgos: 33.
 - P0: 0.

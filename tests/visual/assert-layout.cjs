@@ -53,6 +53,26 @@ async function inspectLayout({ page, route, viewport }) {
       if (element.scrollWidth > element.clientWidth + tolerance) {
         failures.push(`${label}: content width ${element.scrollWidth}px clipped by ${element.clientWidth}px`);
       }
+
+      const clippingValues = new Set(['auto', 'clip', 'hidden', 'scroll']);
+      let clippingParent = element.parentElement;
+      while (clippingParent) {
+        const parentStyle = getComputedStyle(clippingParent);
+        if (clippingValues.has(parentStyle.overflowX) || clippingValues.has(parentStyle.overflowY)) break;
+        clippingParent = clippingParent.parentElement;
+      }
+      if (clippingParent) {
+        const parentStyle = getComputedStyle(clippingParent);
+        const parentBox = clippingParent.getBoundingClientRect();
+        if (clippingValues.has(parentStyle.overflowX)
+          && (box.left < parentBox.left - tolerance || box.right > parentBox.right + tolerance)) {
+          failures.push(`${label}: horizontal bounds ${box.left.toFixed(1)}..${box.right.toFixed(1)} outside clipping parent ${parentBox.left.toFixed(1)}..${parentBox.right.toFixed(1)}`);
+        }
+        if (clippingValues.has(parentStyle.overflowY)
+          && (box.top < parentBox.top - tolerance || box.bottom > parentBox.bottom + tolerance)) {
+          failures.push(`${label}: vertical bounds ${box.top.toFixed(1)}..${box.bottom.toFixed(1)} outside clipping parent ${parentBox.top.toFixed(1)}..${parentBox.bottom.toFixed(1)}`);
+        }
+      }
     }
 
     const describeTarget = target => {
@@ -98,7 +118,7 @@ captureRoutes(inspectLayout)
     if (violations.length) {
       throw new Error(violations.join('\n'));
     }
-    console.log(`PASS layout: ${results.length} screenshots, 17 routes, 2 viewports, 0 layout violations`);
+    console.log(`PASS layout: ${results.length} screenshots, ${routes.length} routes, ${viewports.length} viewports, 0 layout violations`);
   })
   .catch(error => {
     console.error(`FAIL layout\n${error.stack || error}`);
