@@ -29,3 +29,15 @@ body[data-game=breakout] .gamebox #stage{background:linear-gradient(135deg,#ffbf
 body[data-game=dodge] .gamebox #stage{background:radial-gradient(circle at 76% 18%,rgba(255,255,255,.18) 0 8%,transparent 8.5%),linear-gradient(#17133c,#4b367c)}
 body[data-game=maze] .gamebox #stage{background:radial-gradient(circle at 15% 14%,rgba(255,255,255,.42) 0 4%,transparent 4.4%),linear-gradient(#acdcae,#397c48)}
 body[data-game=memory] .play:before{background:#9fdff0}body[data-game=merge] .play:before{background:#cbb0ef}body[data-game=connect] .play:before{background:#91d6ee}body[data-game=reaction] .play:before{background:#b9d8e8}body[data-game=tic] .play:before{background:#efbe7e}body[data-game=simon] .play:before{background:#2e2858}body[data-game=rps] .play:before{background:#d49ab0}body[data-game=math] .play:before{background:#9ed9bf}
+body[data-game=maze] .hud strong{animation:none}
+body[data-game=maze] #stage:before{animation:none;background:none}
+body[data-game=maze] #status{font-size:12px;line-height:1.35}
+body[data-game=maze] #stage canvas{max-width:100%;border:3px solid #fff;box-shadow:6px 6px 0 #0f8f38}
+body[data-game=maze] .maze-progress{position:static;z-index:3;display:flex;gap:5px;transform:none;padding:5px;border:1px solid #fff;background:#000;animation:none!important}
+body[data-game=maze] .maze-progress span{display:grid;width:32px;height:24px;place-items:center;border:1px solid #fff;color:#fff;font:700 10px monospace}
+body[data-game=maze] .maze-progress [aria-current=step]{border-color:#0f8f38;background:#0f8f38;color:#000}
+body[data-game=maze] .gamebox #stage{background:#000}
+body[data-game=maze] #score{display:grid;min-width:64px;font-variant-numeric:tabular-nums}
+body[data-game=maze] #score:before{content:"PUNTOS";color:#fff;font:700 9px/1 monospace;letter-spacing:.12em}
+body[data-game=maze] #stage{grid-template-rows:auto auto;gap:12px;align-content:center;justify-items:center}
+body[data-game=maze] #stage canvas{grid-row:2;width:min(380px,100%);height:auto;animation:none!important}
