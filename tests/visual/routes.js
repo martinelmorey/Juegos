@@ -89,7 +89,7 @@ const routes = [
       hud: '.panel',
       panel: '.panel',
       board: '.board-wrap',
-      controls: '.game-card > .mobile-controls',
+      controls: '.board-column > .mobile-controls',
     },
     action: 'click-play',
     prepare: startTetris,
