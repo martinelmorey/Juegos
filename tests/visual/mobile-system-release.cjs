@@ -95,10 +95,12 @@ test("mobile navigation and theme control stay in the same locations", async () 
       const page = await open(browser, server.baseURL, route);
       assert.equal((await page.locator(".back").textContent()).trim(), "← Volver al arcade", `${route} back copy`);
       const toggle = await page.locator(".theme-toggle").evaluate(element => {
-        const box = element.getBoundingClientRect(), style = getComputedStyle(element);
-        return { x: box.x, y: box.y, width: box.width, height: box.height, position: style.position };
+        const box = element.getBoundingClientRect(), style = getComputedStyle(element), icon = getComputedStyle(element, "::before");
+        return { x: box.x, y: box.y, width: box.width, height: box.height, position: style.position, icon: { display: icon.display, width: icon.width, height: icon.height, border: icon.borderTopWidth, shadow: icon.boxShadow } };
       });
-      assert.deepEqual(toggle, { x: 336, y: 10, width: 44, height: 44, position: "fixed" }, `${route} ${JSON.stringify(toggle)}`);
+      assert.deepEqual({ x: toggle.x, y: toggle.y, width: toggle.width, height: toggle.height, position: toggle.position }, { x: 332, y: 10, width: 48, height: 48, position: "fixed" }, `${route} ${JSON.stringify(toggle)}`);
+      assert.deepEqual({ display: toggle.icon.display, width: toggle.icon.width, height: toggle.icon.height, border: toggle.icon.border }, { display: "block", width: "18px", height: "18px", border: "3px" }, `${route} icon geometry`);
+      assert.notEqual(toggle.icon.shadow, "none", `${route} icon rays`);
       await page.close();
     }
   } finally { await browser.close(); await server.close(); }
@@ -116,7 +118,7 @@ test("mobile controls follow the active dark and light theme", async () => {
     });
     const dark = await colors();
     await page.locator(".theme-toggle").click();
-    await page.waitForTimeout(50);
+    await page.waitForTimeout(180);
     const light = await colors();
     assert.equal(dark.surface, dark.black);
     assert.equal(dark.button, dark.black);
@@ -125,5 +127,51 @@ test("mobile controls follow the active dark and light theme", async () => {
     assert.equal(light.button, light.black);
     assert.equal(light.text, light.white);
     assert.notEqual(light.surface, dark.surface);
+  } finally { await browser.close(); await server.close(); }
+});
+
+test("mobile shell buttons expose clear primary and secondary hierarchy", async () => {
+  const server = await startStaticServer(root);
+  const browser = await chromium.launch({ headless: true });
+  try {
+    for (const item of [
+      { route: "/game.html?game=snake", selector: "#restart", primary: false },
+      { route: "/game.html?game=simon", selector: ".simon-start", primary: true },
+      { route: "/tetris/", selector: "#start-button", primary: true },
+      { route: "/tetris/", selector: "#pause-button", primary: false },
+      { route: "/rem-runner/", selector: "#mute", primary: false },
+      { route: "/rem-runner/", selector: "#pause", primary: false },
+    ]) {
+      const page = await open(browser, server.baseURL, item.route);
+      const target = page.locator(item.selector);
+      await target.focus();
+      const report = await target.evaluate((element, primary) => {
+        const style = getComputedStyle(element), root = getComputedStyle(document.documentElement), box = element.getBoundingClientRect();
+        const normalize = value => { const probe = document.createElement("i"); probe.style.color = value; document.body.append(probe); const color = getComputedStyle(probe).color; probe.remove(); return color; };
+        return { height: box.height, background: style.backgroundColor, color: style.color, green: normalize(root.getPropertyValue("--green")), black: normalize(root.getPropertyValue("--black")), activeInk: normalize(root.getPropertyValue("--mobile-active-ink")), borderWidth: style.borderTopWidth, radius: style.borderRadius, shadow: style.boxShadow, outlineWidth: style.outlineWidth, outlineStyle: style.outlineStyle, transform: style.textTransform, spacing: style.letterSpacing, primary };
+      }, item.primary);
+      assert.ok(report.height >= 48, `${item.route} ${item.selector} height ${report.height}`);
+      assert.equal(report.background, report.primary ? report.green : report.black, `${item.route} ${item.selector} background`);
+      if (report.primary) assert.equal(report.color, report.activeInk, `${item.route} ${item.selector} primary ink`);
+      assert.equal(report.borderWidth, "2px", `${item.route} ${item.selector} border`);
+      assert.equal(report.radius, "0px", `${item.route} ${item.selector} radius`);
+      assert.notEqual(report.shadow, "none", `${item.route} ${item.selector} shadow`);
+      assert.equal(report.outlineWidth, "3px", `${item.route} ${item.selector} focus width`);
+      assert.equal(report.outlineStyle, "solid", `${item.route} ${item.selector} focus style`);
+      assert.equal(report.transform, "uppercase", `${item.route} ${item.selector} text transform`);
+      assert.notEqual(report.spacing, "normal", `${item.route} ${item.selector} letter spacing`);
+      await page.close();
+    }
+  } finally { await browser.close(); await server.close(); }
+});
+
+test("Simon distinguishes a new sequence from the global restart action", async () => {
+  const server = await startStaticServer(root);
+  const browser = await chromium.launch({ headless: true });
+  try {
+    const page = await open(browser, server.baseURL, "/game.html?game=simon");
+    await page.locator(".simon-start").click();
+    assert.equal((await page.locator(".simon-start").textContent()).trim(), "Nueva secuencia");
+    assert.equal((await page.locator("#restart").textContent()).trim(), "Reiniciar");
   } finally { await browser.close(); await server.close(); }
 });

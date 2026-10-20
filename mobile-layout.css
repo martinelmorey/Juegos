@@ -47,3 +47,17 @@
  .runner-card{margin-top:0}
 }
 @media(max-width:340px){.play #stage{padding-left:7px;padding-right:7px}}
+
+/* Mobile button hierarchy: primary actions, shell utilities and tactile controls. */
+@media(max-width:600px){
+ :is(.hud button,.game-btn,.runner-hud button,.overlay button,.secondary,#save-score,#save-runner){min-height:48px;padding:0 14px;border:2px solid var(--green);border-radius:0;background:var(--black);color:var(--white);box-shadow:0 3px 0 var(--green);font:800 11px/1 monospace;letter-spacing:.08em;text-transform:uppercase;touch-action:manipulation;transition:transform .12s ease,box-shadow .12s ease,background .12s ease,color .12s ease}
+ :is(.game-btn,.overlay #start-button,#save-score,#save-runner){background:var(--green);color:var(--mobile-active-ink)}
+ .theme-toggle{width:48px;height:48px;border-width:2px;box-shadow:0 3px 0 var(--green);font-size:0;transition:transform .12s ease,box-shadow .12s ease,background .12s ease,color .12s ease}
+ .theme-toggle::before{content:"";display:block;width:18px;height:18px;border:3px solid currentColor;border-radius:50%;box-shadow:0 -11px 0 -7px currentColor,0 11px 0 -7px currentColor,11px 0 0 -7px currentColor,-11px 0 0 -7px currentColor,8px 8px 0 -7px currentColor,-8px 8px 0 -7px currentColor,8px -8px 0 -7px currentColor,-8px -8px 0 -7px currentColor}
+ [data-theme=light] .theme-toggle::before{box-shadow:6px -4px 0 -2px var(--black)}
+ :is(.mobile-controls,.controls,.board-column>.mobile-controls) button{border-width:2px;box-shadow:0 3px 0 var(--green);font-weight:900;transition:transform .1s ease,box-shadow .1s ease,background .1s ease,color .1s ease}
+ :is(.hud button,.game-btn,.runner-hud button,.overlay button,.secondary,#save-score,#save-runner,.theme-toggle,.mobile-controls button,.controls button,.board-column>.mobile-controls button):active{transform:translateY(3px);box-shadow:none}
+ button:focus-visible,.back:focus-visible{outline:3px solid var(--white);outline-offset:3px}
+ button:disabled,[aria-disabled=true]{opacity:.48;box-shadow:none;cursor:not-allowed;transform:none}
+}
+@media(max-width:600px) and (prefers-reduced-motion:reduce){:is(.hud button,.game-btn,.runner-hud button,.overlay button,.secondary,#save-score,#save-runner,.theme-toggle,.mobile-controls button,.controls button,.board-column>.mobile-controls button){transition:none}}
