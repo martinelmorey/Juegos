@@ -23,7 +23,15 @@ body[data-game=maze] #stage{background:radial-gradient(circle at 20% 10%,#fff9 0
 .home .card.snake:after,.home .card.whack:after,.home .card.maze:after,.home .card.platformer:after{display:block}
 
 /* Distinct gameplay worlds: scenery follows mechanics, not a shared meadow. */
-body[data-game=snake] .gamebox #stage{background:linear-gradient(#bcefff 0 66%,#72d483 67%)}
+body[data-game=snake] .gamebox{border-color:#0f8f38;background:#020604}
+body[data-game=snake] .gamebox #stage{background:#020604}
+body[data-game=snake] .gamebox #stage canvas{border:2px solid #0f8f38;box-shadow:0 0 0 1px #020604,0 0 24px rgba(15,143,56,.28)}
+body[data-game=snake] .hud{background:#020604;border-bottom:2px solid #0f8f38}
+body[data-game=snake] .hud strong{display:grid;gap:1px;color:#fff;line-height:1}
+body[data-game=snake] .hud strong:before{content:'ENERGÍA';color:#0f8f38;font:800 8px/1 monospace;letter-spacing:.12em}
+body[data-game=snake] .hud span{color:#fff;font-weight:800}
+body[data-game=snake] .hint{color:var(--white);font-size:11px;line-height:1.5}
+@media(max-width:600px){body[data-game=snake] .play>header{margin-bottom:8px;padding-bottom:8px}body[data-game=snake] .gamebox #stage{padding:6px}body[data-game=snake] .hud{padding-block:7px}}
 body[data-game=pong] .gamebox #stage{background:radial-gradient(ellipse at 50% 105%,#ff9b7e 0 28%,transparent 29%),linear-gradient(#6759b5,#272052 72%)}
 body[data-game=breakout] .gamebox #stage{background:linear-gradient(135deg,#ffbfd1,#8b6ac8 72%)}
 body[data-game=dodge] .gamebox #stage{background:radial-gradient(circle at 76% 18%,rgba(255,255,255,.18) 0 8%,transparent 8.5%),linear-gradient(#17133c,#4b367c)}

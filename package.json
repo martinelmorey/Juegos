@@ -2,11 +2,12 @@
   "name": "juegos-visual-audit",
   "scripts": {
     "test:layout": "node tests/visual/assert-layout.cjs",
-    "test:quality": "node --test tests/visual/quality-regressions.cjs tests/visual/tetris-release.cjs tests/visual/cofre-rush-release.cjs tests/visual/mobile-system-release.cjs",
+    "test:quality": "node --test tests/visual/quality-regressions.cjs tests/visual/tetris-release.cjs tests/visual/cofre-rush-release.cjs tests/visual/mobile-system-release.cjs tests/visual/snake-release.cjs",
     "test:design": "node --test tests/design/validate-directions.cjs",
     "test:tetris": "node --test tests/visual/tetris-release.cjs",
     "test:cofre": "node --test tests/visual/cofre-rush-release.cjs",
-    "test:mobile": "node --test tests/visual/mobile-system-release.cjs"
+    "test:mobile": "node --test tests/visual/mobile-system-release.cjs",
+    "test:snake": "node --test tests/visual/snake-release.cjs"
   },
   "private": true,
   "devDependencies": {
