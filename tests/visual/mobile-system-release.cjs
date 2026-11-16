@@ -23,7 +23,8 @@ test("mobile brand geometry is shared across gameplay surfaces", async () => {
   const browser = await chromium.launch({ headless: true });
   try {
     const home = await open(browser, server.baseURL, "/");
-    const homeLogo = await rect(home, ".home > .brand-logo");
+    const homeLogo = await rect(home, ".coming-soon__logo");
+    assert.equal(await home.locator("h1").textContent(), "PRÓXIMAMENTE");
     assert.ok(Math.abs(homeLogo.width - 96) <= 1, JSON.stringify(homeLogo));
     assert.ok(Math.abs((homeLogo.x + homeLogo.width / 2) - 195) <= 1, JSON.stringify(homeLogo));
     await home.close();

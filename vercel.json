@@ -1,0 +1,29 @@
+{
+  "redirects": [
+    {
+      "source": "/game.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/tetris",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/tetris/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/rem-runner",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/rem-runner/:path*",
+      "destination": "/",
+      "permanent": false
+    }
+  ]
+}

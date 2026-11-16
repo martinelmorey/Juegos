@@ -4,8 +4,9 @@ const viewports = [
   { name: '592x1280', width: 592, height: 1280 },
 ];
 
-async function confirmCatalogReady({ page }) {
-  await page.waitForFunction(() => document.querySelectorAll('.grid .card').length === 16);
+async function confirmComingSoonReady({ page }) {
+  await page.waitForFunction(() => document.querySelector('h1')?.textContent.trim() === 'PRÓXIMAMENTE');
+  await page.waitForFunction(() => document.querySelectorAll('a, button').length === 0);
 }
 
 async function confirmSharedGameReady({ page, route }) {
@@ -54,15 +55,15 @@ const routes = [
   {
     name: 'home',
     path: '/',
-    root: '.home',
+    root: '.coming-soon',
     regions: {
-      shell: '.home',
-      stage: '.grid',
-      panel: '.home-ranking',
-      board: '.grid',
+      shell: '.coming-soon',
+      stage: '.coming-soon__frame',
+      panel: '.coming-soon__status',
+      board: '.coming-soon h1',
     },
-    action: 'confirm-ready',
-    prepare: confirmCatalogReady,
+    action: 'confirm-inactive',
+    prepare: confirmComingSoonReady,
   },
   ...sharedGames.map(([game, board, hasControls]) => ({
     name: game,
