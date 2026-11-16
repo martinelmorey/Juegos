@@ -24,7 +24,7 @@ test("coming-soon screen is responsive and accessible", () => {
 
 test("direct game routes redirect to the inactive landing", () => {
   const sources = new Set(vercel.redirects.map((rule) => rule.source));
-  for (const route of ["/game.html", "/tetris", "/tetris/:path*", "/rem-runner", "/rem-runner/:path*"]) {
+  for (const route of ["/game.html", "/tetris", "/tetris/", "/tetris/:path*", "/rem-runner", "/rem-runner/", "/rem-runner/:path*"]) {
     assert.ok(sources.has(route), `missing redirect for ${route}`);
   }
   assert.ok(vercel.redirects.every((rule) => rule.destination === "/" && rule.permanent === false));
